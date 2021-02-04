@@ -1,0 +1,16 @@
+export const types = {
+  addContacts: "[Contacts, Add contacts]",
+  setActiveContact: "[Contacts, Set contact object to activeContact]",
+  setActiveTeam: "[Contacts, Set team to activeTeam]",
+  setActiveFilter: "[Contacts, Set filter to activeFilter]",
+  setUnreaded: "[Contacts, Set unreaded to activeContact]",
+  updateUnreaded: "[Contacts, Update unreaded to activeContact]",
+  addTeam: "[Contacts, Add new team]",
+  addMessage: "[Contacts, Add message to contacts]",
+  addNote: "[Contacts, Add note to contacts]",
+  editNote: "[Contacts, Edit note from contacts]",
+  deleteNote: "[Contacts, Delete note from contacts]",
+  addMultiMessages: "[Contacts, Add a multi message to contacts]",
+  addMultiTeamContacts: "[Contacts, Add a multi teams to contacts]",
+  removeMultiTeamContacts: "[Contacts, Remove a multi teams to contacts]",
+};

@@ -1,0 +1,102 @@
+.chat__slide-panel {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  height: 100vh;
+  padding: 1.5em 2em;
+  width: 50vh;
+  background-color: white;
+  border-radius: 0 0.4em 0.4em 0;
+
+  h3,
+  h5 {
+    font-size: 1.6rem;
+    color: $font-color;
+    margin-bottom: 0.5em;
+  }
+
+  .chat__side-info {
+    width: 95%;
+    background-color: $primary;
+    border-radius: 0.4em;
+    margin: 0 auto;
+    padding: 1em;
+
+    span {
+      color: $light-grey;
+      display: inline-block;
+      width: 100%;
+      font-size: 1.2rem;
+
+      strong {
+        color: $white;
+      }
+    }
+  }
+
+  .chat__slide-teams {
+    margin-top: 1em;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      li {
+        display: inline-block;
+        margin-left: 1em;
+        font-size: 1rem;
+        color: $white;
+        width: 45%;
+        text-align: center;
+        border: 0.2em solid $tertiary;
+        border-radius: 1em;
+        margin-bottom: 0.2em;
+        background-color: $secondary;
+      }
+    }
+  }
+
+  .chat__slide-settings {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+
+    li {
+      margin: 0 0.5em;
+      flex-grow: 1;
+      text-align: center;
+      background-color: $tertiary;
+      color: $white;
+      padding: 1em;
+      border-radius: 0.5em;
+      cursor: pointer;
+
+      &:last-child {
+        background-color: $secondary;
+
+        &:hover {
+          background-color: darken($color: $secondary, $amount: 15);
+          color: $tertiary;
+          transition-duration: 0.3s;
+        }
+      }
+
+      &:hover {
+        background-color: $secondary;
+        transition-duration: 0.3s;
+        border-radius: 1em;
+      }
+    }
+  }
+}
+
+.open-menu {
+  transition-duration: 0.3s;
+  left: 3em;
+}
+
+.close-menu {
+  transition-duration: 0.3s;
+  left: -50vh;
+}

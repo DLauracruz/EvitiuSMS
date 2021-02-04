@@ -1,0 +1,148 @@
+.popup__add-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  input {
+    padding: 0.5em 1em;
+    background-color: $light-grey;
+    border: 0.2em solid $dark-grey;
+    border-radius: 0.4em;
+    width: 48%;
+    height: 8%;
+    margin: 0 1em;
+  }
+
+  .popup__add-contact-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 48%;
+    max-height: 40vh;
+
+    label {
+      display: inline-block;
+      color: $font-color;
+      margin: 0.5em 0 0em 1em;
+    }
+
+    .popup_add-contact-teams {
+      font-size: 0.8rem;
+
+      span {
+        background-color: $secondary;
+        padding: 0.2em 0.4em;
+        color: $white;
+        border-radius: 1em;
+      }
+    }
+
+    &:nth-child(2) > .scroll {
+      li {
+        background-color: $white;
+        color: $tertiary;
+
+        &:hover {
+          background-color: $tertiary;
+          transition-duration: 0.3s;
+
+          span {
+            color: white;
+            transition-duration: 0.3s;
+          }
+        }
+      }
+
+      .popup__add-team-selected {
+        background-color: $tertiary;
+        transition-duration: 0.3s;
+
+        li {
+          color: $tertiary;
+          transition-duration: 0.3s;
+        }
+      }
+    }
+  }
+
+  ul {
+    max-height: 30vh;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0.5em 1em 0 1em;
+
+    li {
+      display: flex;
+      color: $white;
+      background-color: $secondary;
+      border-radius: 0.2em;
+      margin-bottom: 0.5em;
+      padding: 0.5em 1em;
+      align-items: center;
+      cursor: pointer;
+
+      span {
+        margin-left: 1em;
+        background-color: transparent;
+      }
+
+      &:hover {
+        background-color: $tertiary;
+        transition-duration: 0.3s;
+
+        span {
+          color: white;
+          transition-duration: 0.3s;
+        }
+      }
+    }
+
+    .popup__add-team-selected {
+      background-color: $tertiary;
+      transition-duration: 0.3s;
+
+      span {
+        color: white;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+
+  .popup__actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 1em;
+
+    button {
+      width: 30%;
+      height: 2em;
+      margin-bottom: 1em;
+      text-align: center;
+      color: $white;
+      background-color: $quaternary;
+      border-radius: 0.2em;
+      cursor: pointer;
+      margin-left: 1em;
+
+      &:last-child {
+        background-color: $secondary;
+      }
+
+      i {
+        margin-right: 0.5em;
+      }
+
+      &:hover {
+        background-color: darken($color: $primary, $amount: 10);
+        transition-duration: 0.3s;
+      }
+
+      &:disabled {
+        background-color: lighten($color: $quaternary, $amount: 20);
+      }
+    }
+  }
+}

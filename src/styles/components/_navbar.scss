@@ -1,0 +1,57 @@
+.navbar__nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+  background-color: $quaternary;
+  width: 4em;
+  height: 100vh;
+  border-radius: 0 1em 1em 0;
+  position: relative;
+  z-index: 20;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40vh;
+
+    a {
+      color: white;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5em;
+      width: 2em;
+      height: 2em;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $light-grey;
+        transition-duration: 0.3s;
+        color: lighten($color: $primary, $amount: 20);
+      }
+    }
+
+    .navbar__selected-route {
+      background-color: $light-grey;
+      transition-duration: 0.3s;
+      color: lighten($color: $primary, $amount: 20);
+    }
+  }
+
+  button {
+    background-color: transparent;
+    font-size: 1.8rem;
+    color: $light-grey;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+      transition-duration: 0.3s;
+    }
+  }
+}

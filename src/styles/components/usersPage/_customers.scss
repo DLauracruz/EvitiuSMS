@@ -1,0 +1,64 @@
+.notes__customers {
+  input {
+    height: 5%;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    width: 100%;
+    border: 0.2em solid $dark-grey;
+  }
+
+  .customers__list {
+    height: calc(95% - 0.5em);
+    overflow-y: auto;
+    margin-top: 0.5em;
+    padding: 0.5em 0.5em 0 0.5em;
+
+    div {
+      display: flex;
+      color: $font-color;
+      background-color: $white;
+      padding: 0.5em 1em;
+      border-radius: 0.4em;
+      margin-bottom: 1em;
+      height: 5em;
+      cursor: pointer;
+
+      img {
+        margin: auto 0;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 4em;
+
+        h5 {
+          font-size: 1rem;
+          width: 100%;
+        }
+      }
+
+      &:hover {
+        background-color: $tertiary;
+        transition-duration: 0.3s;
+
+        div {
+          background-color: $tertiary;
+          transition-duration: 0.3s;
+        }
+      }
+    }
+
+    .customers__selected-contact {
+      background-color: $tertiary;
+      transition-duration: 0.3s;
+
+      div {
+        background-color: $tertiary;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}

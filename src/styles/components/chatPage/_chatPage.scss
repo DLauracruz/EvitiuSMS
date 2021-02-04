@@ -1,0 +1,23 @@
+@import "info";
+@import "chat";
+@import "contacts";
+@import "messages";
+
+.chat__page {
+  display: flex;
+  height: 100%;
+
+  & > div {
+    &:nth-child(1) {
+      width: 25%;
+    }
+
+    &:nth-child(2) {
+      width: 45%;
+    }
+
+    &:nth-child(3) {
+      width: 30%;
+    }
+  }
+}

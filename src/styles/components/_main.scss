@@ -1,0 +1,11 @@
+.main__router {
+  display: flex;
+  flex-direction: row;
+  background-color: $background;
+}
+
+.main__container {
+  padding: 1em 2em;
+  width: 100%;
+  height: 100vh;
+}

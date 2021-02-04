@@ -1,0 +1,152 @@
+.contacts {
+  width: 100%;
+
+  input {
+    height: 3.5em;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    width: 100%;
+    border: 0.2em solid $dark-grey;
+    margin-top: 1em;
+  }
+
+  .contacts__teams {
+    background-color: $white;
+    padding: 1em;
+    border-radius: 0.4em;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h4 {
+      height: 1.5em;
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      background-color: $secondary;
+      color: $white;
+      text-transform: uppercase;
+      border-radius: 1em;
+    }
+
+    ul {
+      margin-top: 0.5em;
+      width: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 0.5em;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1em;
+        background-color: $tertiary;
+        color: $white;
+        border-radius: 1em;
+        margin-bottom: 0.5em;
+        text-transform: capitalize;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $quaternary;
+          transition-duration: 0.3s;
+        }
+      }
+
+      .contacts__selected-team {
+        background-color: $secondary;
+        border: 0.2em solid $tertiary;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+
+  .contacts__list {
+    height: calc(82% - 3.5em);
+    overflow-y: auto;
+    margin-top: 0.5em;
+    padding: 0.5em 0.5em 0 0.5em;
+
+    div {
+      display: flex;
+      color: $font-color;
+      background-color: $white;
+      padding: 0.5em 1em;
+      border-radius: 0.4em;
+      margin-bottom: 1em;
+      cursor: pointer;
+
+      .noti {
+        color: white;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        border-radius: 2px;
+        margin: auto 0;
+
+        span {
+          position: absolute;
+          top: -0.5em;
+
+          line-height: 2em;
+          width: 2em;
+          height: 2em;
+          background-color: red;
+          font-size: 0.9rem;
+          border-radius: 50%;
+          color: white;
+          text-align: center;
+        }
+
+        img {
+          min-width: 4em;
+          height: 4em;
+          border-radius: 50%;
+        }
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        h5 {
+          font-size: 1rem;
+          width: 100%;
+        }
+
+        p {
+          font-size: 0.8rem;
+          width: 100%;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      &:hover {
+        background-color: $tertiary;
+        transition-duration: 0.3s;
+
+        div {
+          background-color: $tertiary;
+          transition-duration: 0.3s;
+        }
+      }
+    }
+
+    .contacts__selected-contact {
+      background-color: $tertiary;
+      transition-duration: 0.3s;
+
+      div {
+        background-color: $tertiary;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}

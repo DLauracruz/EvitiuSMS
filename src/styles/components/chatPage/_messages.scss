@@ -1,0 +1,54 @@
+.messages__messages {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+  padding: 1em 1em 0 1em;
+  background-color: $white;
+  border-radius: 0.4em;
+  overflow-y: auto;
+  height: 80%;
+  outline: none;
+
+  @mixin message {
+    max-width: 70%;
+    border-radius: 0.4em;
+    margin-bottom: 0.5em;
+    padding: 1em;
+  }
+
+  .message__to {
+    @include message;
+    background-color: $tertiary;
+    color: $white;
+  }
+
+  .message__from {
+    @include message;
+    align-self: flex-end;
+    color: $white;
+    background-color: $secondary;
+  }
+
+  img {
+    align-self: flex-end;
+    width: 70%;
+    border-radius: 0.6em;
+    margin-bottom: 0.5em;
+  }
+
+  .messages__drop-zone > .drag {
+    padding: 5em 2em;
+    display: flex;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 1em 1em 0 0;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    background-color: $quaternary;
+    color: white;
+    transition: height 0.3s ease-in;
+  }
+}
