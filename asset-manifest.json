@@ -1,29 +1,29 @@
 {
   "files": {
     "main.css": "/EvitiuSMS/static/css/main.1502bf69.chunk.css",
-    "main.js": "/EvitiuSMS/static/js/main.b6dd8c9c.chunk.js",
-    "main.js.map": "/EvitiuSMS/static/js/main.b6dd8c9c.chunk.js.map",
-    "runtime-main.js": "/EvitiuSMS/static/js/runtime-main.3c32eabf.js",
-    "runtime-main.js.map": "/EvitiuSMS/static/js/runtime-main.3c32eabf.js.map",
-    "static/js/2.b91d4973.chunk.js": "/EvitiuSMS/static/js/2.b91d4973.chunk.js",
-    "static/js/2.b91d4973.chunk.js.map": "/EvitiuSMS/static/js/2.b91d4973.chunk.js.map",
-    "static/js/3.2927353b.chunk.js": "/EvitiuSMS/static/js/3.2927353b.chunk.js",
-    "static/js/3.2927353b.chunk.js.map": "/EvitiuSMS/static/js/3.2927353b.chunk.js.map",
-    "static/js/4.a8492e48.chunk.js": "/EvitiuSMS/static/js/4.a8492e48.chunk.js",
-    "static/js/4.a8492e48.chunk.js.map": "/EvitiuSMS/static/js/4.a8492e48.chunk.js.map",
-    "static/js/5.4808f436.chunk.js": "/EvitiuSMS/static/js/5.4808f436.chunk.js",
-    "static/js/5.4808f436.chunk.js.map": "/EvitiuSMS/static/js/5.4808f436.chunk.js.map",
+    "main.js": "/EvitiuSMS/static/js/main.e580d8ca.chunk.js",
+    "main.js.map": "/EvitiuSMS/static/js/main.e580d8ca.chunk.js.map",
+    "runtime-main.js": "/EvitiuSMS/static/js/runtime-main.92372276.js",
+    "runtime-main.js.map": "/EvitiuSMS/static/js/runtime-main.92372276.js.map",
+    "static/js/2.14e97d1b.chunk.js": "/EvitiuSMS/static/js/2.14e97d1b.chunk.js",
+    "static/js/2.14e97d1b.chunk.js.map": "/EvitiuSMS/static/js/2.14e97d1b.chunk.js.map",
+    "static/js/3.325d1530.chunk.js": "/EvitiuSMS/static/js/3.325d1530.chunk.js",
+    "static/js/3.325d1530.chunk.js.map": "/EvitiuSMS/static/js/3.325d1530.chunk.js.map",
+    "static/js/4.d3134807.chunk.js": "/EvitiuSMS/static/js/4.d3134807.chunk.js",
+    "static/js/4.d3134807.chunk.js.map": "/EvitiuSMS/static/js/4.d3134807.chunk.js.map",
+    "static/js/5.52ce10ad.chunk.js": "/EvitiuSMS/static/js/5.52ce10ad.chunk.js",
+    "static/js/5.52ce10ad.chunk.js.map": "/EvitiuSMS/static/js/5.52ce10ad.chunk.js.map",
     "index.html": "/EvitiuSMS/index.html",
     "static/css/main.1502bf69.chunk.css.map": "/EvitiuSMS/static/css/main.1502bf69.chunk.css.map",
-    "static/js/2.b91d4973.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/2.b91d4973.chunk.js.LICENSE.txt",
-    "static/js/3.2927353b.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/3.2927353b.chunk.js.LICENSE.txt",
-    "static/js/4.a8492e48.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/4.a8492e48.chunk.js.LICENSE.txt",
-    "static/js/5.4808f436.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/5.4808f436.chunk.js.LICENSE.txt"
+    "static/js/2.14e97d1b.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/2.14e97d1b.chunk.js.LICENSE.txt",
+    "static/js/3.325d1530.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/3.325d1530.chunk.js.LICENSE.txt",
+    "static/js/4.d3134807.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/4.d3134807.chunk.js.LICENSE.txt",
+    "static/js/5.52ce10ad.chunk.js.LICENSE.txt": "/EvitiuSMS/static/js/5.52ce10ad.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3c32eabf.js",
-    "static/js/2.b91d4973.chunk.js",
+    "static/js/runtime-main.92372276.js",
+    "static/js/2.14e97d1b.chunk.js",
     "static/css/main.1502bf69.chunk.css",
-    "static/js/main.b6dd8c9c.chunk.js"
+    "static/js/main.e580d8ca.chunk.js"
   ]
 }
