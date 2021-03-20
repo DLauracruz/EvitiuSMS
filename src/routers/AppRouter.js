@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Redirect,
   Route,
+  HashRouter,
 } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";
 import { AuthRouter } from "./AuthRouter";
@@ -12,7 +12,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 
 export const AppRouter = () => {
-  const { auth, verificaToken } = useContext(AuthContext);
+  const { contactsState } = useContext(ContactsContext);
 
   useEffect(() => {
     verificaToken();
@@ -23,10 +23,11 @@ export const AppRouter = () => {
   }
 
   return (
-    <Router>
-      <div>
-        <Switch>
-          {/* <PublicRoute
+    <HashRouter basename={process.env.PUBLIC_URL}>
+      <Router>
+        <div>
+          <Switch>
+            {/* <PublicRoute
             isAuthenticated={auth.logged}
             path="/auth"
             component={AuthRouter}
@@ -37,10 +38,11 @@ export const AppRouter = () => {
             path="/"
             component={MainRouter}
           /> */}
-          <Route path="/auth" component={AuthRouter} />
-          <Route path="/" component={MainRouter} />
-        </Switch>
-      </div>
-    </Router>
+            <Route path="/auth" component={AuthRouter} />
+            <Route path="/" component={MainRouter} />
+          </Switch>
+        </div>
+      </Router>
+    </HashRouter>
   );
 };
