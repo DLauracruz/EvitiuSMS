@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/evitiu-sms/static/css/main.1502bf69.chunk.css",
+    "main.js": "/evitiu-sms/static/js/main.7c4c4816.chunk.js",
+    "main.js.map": "/evitiu-sms/static/js/main.7c4c4816.chunk.js.map",
+    "runtime-main.js": "/evitiu-sms/static/js/runtime-main.07e9c433.js",
+    "runtime-main.js.map": "/evitiu-sms/static/js/runtime-main.07e9c433.js.map",
+    "static/js/2.b91d4973.chunk.js": "/evitiu-sms/static/js/2.b91d4973.chunk.js",
+    "static/js/2.b91d4973.chunk.js.map": "/evitiu-sms/static/js/2.b91d4973.chunk.js.map",
+    "static/js/3.2927353b.chunk.js": "/evitiu-sms/static/js/3.2927353b.chunk.js",
+    "static/js/3.2927353b.chunk.js.map": "/evitiu-sms/static/js/3.2927353b.chunk.js.map",
+    "static/js/4.a8492e48.chunk.js": "/evitiu-sms/static/js/4.a8492e48.chunk.js",
+    "static/js/4.a8492e48.chunk.js.map": "/evitiu-sms/static/js/4.a8492e48.chunk.js.map",
+    "static/js/5.4808f436.chunk.js": "/evitiu-sms/static/js/5.4808f436.chunk.js",
+    "static/js/5.4808f436.chunk.js.map": "/evitiu-sms/static/js/5.4808f436.chunk.js.map",
+    "index.html": "/evitiu-sms/index.html",
+    "static/css/main.1502bf69.chunk.css.map": "/evitiu-sms/static/css/main.1502bf69.chunk.css.map",
+    "static/js/2.b91d4973.chunk.js.LICENSE.txt": "/evitiu-sms/static/js/2.b91d4973.chunk.js.LICENSE.txt",
+    "static/js/3.2927353b.chunk.js.LICENSE.txt": "/evitiu-sms/static/js/3.2927353b.chunk.js.LICENSE.txt",
+    "static/js/4.a8492e48.chunk.js.LICENSE.txt": "/evitiu-sms/static/js/4.a8492e48.chunk.js.LICENSE.txt",
+    "static/js/5.4808f436.chunk.js.LICENSE.txt": "/evitiu-sms/static/js/5.4808f436.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.07e9c433.js",
+    "static/js/2.b91d4973.chunk.js",
+    "static/css/main.1502bf69.chunk.css",
+    "static/js/main.7c4c4816.chunk.js"
+  ]
+}
