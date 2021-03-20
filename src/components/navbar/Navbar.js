@@ -17,12 +17,12 @@ export const Navbar = () => {
         <ul>
           <li>
             <NavLink activeClassName="navbar__selected-route" exact to="/chat">
-              <i className="fa fa-comment" aria-hidden="true"></i>
+              <i className="fa fa-comment"></i>
             </NavLink>
           </li>
           <li>
             <NavLink activeClassName="navbar__selected-route" exact to="/users">
-              <i className="fa fa-users" aria-hidden="true"></i>
+              <i className="fa fa-sticky-note"></i>
             </NavLink>
           </li>
           <li>
@@ -31,12 +31,21 @@ export const Navbar = () => {
               exact
               to="/message"
             >
-              <i className="fa fa-sticky-note" aria-hidden="true"></i>
+              <i className="fa fa-users"></i>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              activeClassName="navbar__selected-route"
+              exact
+              to="/groups"
+            >
+              <i className="fas fa-layer-group"></i>
             </NavLink>
           </li>
           <li>
             <NavLink activeClassName="navbar__selected-route" exact to="/admin">
-              <i className="fa fa-user" aria-hidden="true"></i>
+              <i className="fa fa-user"></i>
             </NavLink>
           </li>
         </ul>

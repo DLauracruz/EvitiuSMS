@@ -5,6 +5,8 @@ import { ContactsContext } from "../../context/ContactsContext";
 import { useToasts } from "react-toast-notifications";
 import { types } from "../../context/contactsTypes";
 
+import * as R from "ramda";
+
 export const RemoveTeamContact = ({ trigger }) => {
   const [searchContacts, setSearchContacts] = useState("");
   const [searchTeams, setSearchTeams] = useState("");
@@ -33,6 +35,11 @@ export const RemoveTeamContact = ({ trigger }) => {
 
   const searchTeam = ({ target }) => {
     setSearchTeams(target.value);
+  };
+
+  const propTeamName = (teams) => {
+    const hasTeam = R.propEq("name", sltdTeam);
+    return R.filter(hasTeam, teams).length > 0 ? true : false;
   };
 
   const removeTeamContacts = () => {
@@ -82,16 +89,18 @@ export const RemoveTeamContact = ({ trigger }) => {
             <ul className="scroll">
               {teams.map(
                 (team, idx) =>
-                  team !== "contacts" &&
-                  team.toLowerCase().includes(searchTeams.toLowerCase()) && (
+                  team.name !== "contacts" &&
+                  team.name
+                    .toLowerCase()
+                    .includes(searchTeams.toLowerCase()) && (
                     <li
-                      onClick={() => setSltdTeam(team)}
+                      onClick={() => setSltdTeam(team.name)}
                       className={`b-shadow ${
-                        sltdTeam === team && "popup__add-team-selected"
+                        sltdTeam === team.name && "popup__add-team-selected"
                       }`}
                       key={idx}
                     >
-                      <span>{team}</span>
+                      <span>{team.name}</span>
                     </li>
                   )
               )}
@@ -112,7 +121,7 @@ export const RemoveTeamContact = ({ trigger }) => {
                   contact.name
                     .toLowerCase()
                     .includes(searchContacts.toLowerCase()) &&
-                  contact.teams.includes(sltdTeam) && (
+                  propTeamName(contact.teams) && (
                     <li
                       onClick={() =>
                         selected(sltdContacts, setSltdContacts, contact._id)
@@ -132,8 +141,8 @@ export const RemoveTeamContact = ({ trigger }) => {
                         <div className="popup_add-contact-teams">
                           {contact.teams.map(
                             (team, idx) =>
-                              team !== "contacts" && (
-                                <span key={idx}>{team}</span>
+                              team.name !== "contacts" && (
+                                <span key={idx}>{team.name}</span>
                               )
                           )}
                         </div>

@@ -45,20 +45,9 @@ export const SendMessage = ({ trigger }) => {
           type: types.addMultiMessages,
           payload: {
             id,
-            message: { origin: "from", message },
+            message: { origin: "from", message, date: new Date().toString() },
           },
         });
-
-        if (activeContact._id === id) {
-          dispatch({
-            type: types.addMessage,
-            payload: { origin: "from", message },
-          });
-
-          setTimeout(() => {
-            scrollToBottomAnimated("messages");
-          }, 100);
-        }
       });
 
       addToast(`Message '${message}' was sended successfully.`, {

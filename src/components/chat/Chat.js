@@ -9,7 +9,7 @@ import { Messages } from "./Messages";
 export const Chat = () => {
   const [message, setMessage] = useState("");
   const { contactsState, dispatch } = useContext(ContactsContext);
-  const { activeContact, activeTeam } = contactsState;
+  const { activeContact, activeTeam, teamsMessages } = contactsState;
 
   const onChange = ({ target }) => {
     setMessage(target.value);
@@ -17,10 +17,17 @@ export const Chat = () => {
 
   const dispatchFiles = (files) => {
     files.map((file) => {
-      dispatch({
-        type: types.addMessage,
-        payload: { origin: "from", message: "", file },
-      });
+      if (activeTeam.name === "contacts") {
+        dispatch({
+          type: types.addMessage,
+          payload: { origin: "from", message: "", file },
+        });
+      } else {
+        dispatch({
+          type: types.addTeamsMessage,
+          payload: { origin: "from", message: "", file },
+        });
+      }
     });
 
     setTimeout(() => {
@@ -34,10 +41,28 @@ export const Chat = () => {
 
   const sendMessage = async (event) => {
     if (event.key === "Enter" && message.length > 0) {
-      await dispatch({
-        type: types.addMessage,
-        payload: { origin: "from", message: message },
-      });
+      if (activeTeam.name === "contacts") {
+        await dispatch({
+          type: types.addMessage,
+          payload: {
+            origin: "from",
+            message: message,
+            date: new Date().toString(),
+          },
+        });
+      } else {
+        await dispatch({
+          type: types.addTeamsMessage,
+          payload: {
+            team: activeTeam.name,
+            message: {
+              origin: "from",
+              message: message,
+              date: new Date().toString(),
+            },
+          },
+        });
+      }
 
       setMessage("");
 
@@ -56,13 +81,16 @@ export const Chat = () => {
             src="https://picsum.photos/200/200"
             alt=""
           />
-          {activeTeam === "contacts" ? (
+          {activeTeam.name === "contacts" ? (
             <div>
               <h3>{activeContact.name}</h3>
               <span>{activeContact.phone}</span>
             </div>
           ) : (
-            <h3>{activeTeam}</h3>
+            <div>
+              <h3>{activeTeam.name.toUpperCase()}</h3>
+              <span>{activeTeam.phone}</span>
+            </div>
           )}
         </div>
 

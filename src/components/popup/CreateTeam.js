@@ -6,6 +6,7 @@ import { useToasts } from "react-toast-notifications";
 import { types } from "../../context/contactsTypes";
 import * as Gen from "generator-username";
 import { name } from "faker";
+import { AddTeamContact } from "./AddTeamContact";
 
 export const CreateTeam = ({ trigger }) => {
   const gerador = new Gen();
@@ -14,6 +15,7 @@ export const CreateTeam = ({ trigger }) => {
   const [sltdTeamName, setSltdTeamName] = useState("");
   const [teamNames, setTeamNames] = useState([]);
   const { addToast } = useToasts();
+  const [phone, setPhone] = useState("");
   const { contactsState, dispatch } = useContext(ContactsContext);
   const { teams } = contactsState;
 
@@ -23,8 +25,12 @@ export const CreateTeam = ({ trigger }) => {
   const selectedClass = (cond, array) => array.includes(cond);
 
   const createTeam = () => {
+    console.log("createTeam");
     if (search.length > 2) {
-      dispatch({ type: types.addTeam, payload: search });
+      dispatch({
+        type: types.addTeam,
+        payload: { name: search, phone: phone },
+      });
       addToast(`Team '${search}' was added successfully.`, {
         appearance: "success",
       });
@@ -57,6 +63,10 @@ export const CreateTeam = ({ trigger }) => {
     ]);
   };
 
+  const onChange = (event) => {
+    setPhone(event.target.value);
+  };
+
   return (
     <Popup ref={ref} trigger={trigger} modal>
       {(close) => (
@@ -68,7 +78,13 @@ export const CreateTeam = ({ trigger }) => {
               onChange={searchTeam}
               value={search}
               type="text"
-              placeholder="Search..."
+              placeholder="Team name..."
+            />
+            <input
+              onChange={onChange}
+              value={phone}
+              type="text"
+              placeholder="Phone..."
             />
 
             <label>Name Suggestions</label>
@@ -103,16 +119,17 @@ export const CreateTeam = ({ trigger }) => {
               {teams.map((team, idx) => (
                 <li
                   className={`b-shadow ${
-                    team.toLowerCase() === search.toLowerCase()
+                    team.name.toLowerCase() === search.toLowerCase()
                       ? "existing"
-                      : team.toLowerCase().includes(search.toLowerCase()) &&
-                        search.length > 0
+                      : team.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) && search.length > 0
                       ? "similar"
                       : "other"
                   }`}
                   key={idx}
                 >
-                  <span>{team}</span>
+                  <span>{team.name}</span>
                 </li>
               ))}
             </ul>
@@ -131,7 +148,7 @@ export const CreateTeam = ({ trigger }) => {
           </div>
 
           <div className="popup__actions">
-            <button onClick={createTeam}>Confirm</button>
+            <button onClick={createTeam}>Next</button>
             <button onClick={close}>Close</button>
           </div>
         </div>

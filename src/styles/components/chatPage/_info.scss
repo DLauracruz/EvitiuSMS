@@ -20,6 +20,9 @@
   }
 
   .info__subtitle {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     color: $white;
 
     h5 {
@@ -36,6 +39,12 @@
       i {
         margin-left: 0.5em;
       }
+    }
+
+    span {
+      color: darken($color: $font-color, $amount: 60);
+      font-weight: 700;
+      cursor: pointer;
     }
   }
 
@@ -85,6 +94,46 @@
 
       strong {
         color: darken($color: $font-color, $amount: 30);
+      }
+    }
+  }
+
+  .info__notes {
+    margin-top: 1em;
+
+    li {
+      background-color: lighten($color: $tertiary, $amount: 20);
+      color: $white;
+      border-radius: 0.2em;
+      padding: 0.5em 1em;
+      margin-top: 0.6em;
+    }
+  }
+
+  .info__groups {
+    margin-top: 0.5em;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1.5em;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1.5em;
+      background-color: $tertiary;
+      color: $white;
+      border-radius: 1em;
+      margin-bottom: 0.5em;
+      text-transform: capitalize;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $quaternary;
+        transition-duration: 0.3s;
       }
     }
   }

@@ -3,6 +3,8 @@ import { ContactsContext } from "../../context/ContactsContext";
 import { types } from "../../context/contactsTypes";
 import { scrollToBottom } from "../../helpers/scrollToBottom";
 
+import * as R from "ramda";
+
 export const Contacts = () => {
   const { contactsState, dispatch } = useContext(ContactsContext);
   const { contacts, teams, activeContact, activeTeam } = contactsState;
@@ -14,25 +16,33 @@ export const Contacts = () => {
     scrollToBottom("messages");
   };
 
-  const selectTeam = (team) =>
+  const selectTeam = (team) => {
     dispatch({ type: types.setActiveTeam, payload: team });
+  };
 
   const searchContact = ({ target }) => {
     setSearch(target.value);
   };
 
+  const propTeamName = (teams) => {
+    const hasTeam = R.propEq("name", activeTeam.name);
+    return R.filter(hasTeam, teams).length > 0 ? true : false;
+  };
+
   return (
     <div className="contacts">
       <div className="contacts__teams b-shadow">
-        <h4>{activeTeam}</h4>
+        <h4>{activeTeam.name}</h4>
         <ul className="scroll">
           {teams.map((team, idx) => (
             <li
               onClick={() => selectTeam(team)}
               key={idx}
-              className={`${activeTeam === team && "contacts__selected-team"}`}
+              className={`${
+                activeTeam.name === team.name && "contacts__selected-team"
+              }`}
             >
-              {team}
+              {team.name}
             </li>
           ))}
         </ul>
@@ -49,18 +59,19 @@ export const Contacts = () => {
         {contacts.map(
           (contact, idx) =>
             contact.name.toLowerCase().includes(search.toLowerCase()) &&
-            contact.teams.includes(activeTeam) && (
+            propTeamName(contact.teams) && (
               <div
                 key={idx}
                 onClick={() => selectContact(contact)}
                 className={`b-shadow ${
-                  contact._id === activeContact._id && activeTeam === "contacts"
+                  contact._id === activeContact._id &&
+                  activeTeam.name === "contacts"
                     ? "contacts__selected-contact"
                     : ""
                 }`}
               >
                 <div className="noti">
-                  {contact.unreaded !== 0 && activeTeam === "contacts" && (
+                  {contact.unreaded !== 0 && activeTeam.name === "contacts" && (
                     <span>
                       {contact.unreaded > 9 ? "+9" : contact.unreaded}
                     </span>
@@ -69,7 +80,7 @@ export const Contacts = () => {
                 </div>
                 <div>
                   <h5>{contact.name}</h5>
-                  {activeTeam === "contacts" && (
+                  {activeTeam.name === "contacts" && (
                     <p>
                       {contact.messages[contact.messages.length - 1]?.message ||
                         contact.messages[contact.messages.length - 1]?.file

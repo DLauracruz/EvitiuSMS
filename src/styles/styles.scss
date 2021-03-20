@@ -2,6 +2,7 @@
 @import "./base/reset";
 @import "./base/settings";
 @import "./base/scrollbar";
+@import "./base/responsive";
 @import "./base/popupConfig";
 @import "./components/popup/popup";
 
@@ -15,4 +16,5 @@
 @import "./components/chatPage/chatPage";
 @import "./components/usersPage/usersPage";
 @import "./components/messagePage/messagePage";
+@import "./components/groupsPage/groupsPage";
 @import "./components/adminPage/adminPage";

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ContactsContext } from "../../context/ContactsContext";
 
 export const Area = () => {
+  const { contactsState } = useContext(ContactsContext);
+  const { templates, activeTemplate } = contactsState;
+
   return (
     <div className="message__area">
       <div className="message__header">
@@ -11,16 +15,15 @@ export const Area = () => {
             alt=""
           />
           <div>
-            <h3>Follow Up</h3>
+            <h3>{templates[activeTemplate].name}</h3>
           </div>
         </div>
       </div>
 
       <textarea
         className="b-shadow"
-        cols="30"
-        rows="10"
         placeholder="Write Something..."
+        value={templates[activeTemplate].message}
       ></textarea>
     </div>
   );

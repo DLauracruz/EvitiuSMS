@@ -30,18 +30,6 @@ export const SlidePanel = ({ activated = false }) => {
         </span>
       </div>
 
-      {/* <div className="chat__slide-teams">
-        <h5>Team(s):</h5>
-
-        <ul>
-          <li>Team One</li>
-          <li>Team Two</li>
-          <li>Team Three</li>
-          <li>Team Four</li>
-          <li>Team Five</li>
-        </ul>
-      </div> */}
-
       <ul className="chat__slide-settings">
         <SendMessage
           trigger={

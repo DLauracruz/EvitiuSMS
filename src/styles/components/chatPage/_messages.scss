@@ -16,9 +16,27 @@
     padding: 1em;
   }
 
+  @mixin span {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0.5em;
+    font-size: 0.8rem;
+  }
+
+  .pending {
+    color: lighten($color: $red, $amount: 10) !important;
+    font-size: 0.9rem !important;
+
+    &:hover {
+      color: darken($color: $red, $amount: 5) !important;
+      transition-duration: 0.3s;
+      cursor: pointer;
+    }
+  }
+
   .message__to {
     @include message;
-    background-color: $tertiary;
+    background-color: $quinary;
     color: $white;
   }
 
@@ -27,6 +45,18 @@
     align-self: flex-end;
     color: $white;
     background-color: $secondary;
+  }
+
+  .span__to {
+    @include span;
+    color: $font-color;
+  }
+
+  .span__from {
+    @include span;
+    align-self: flex-end;
+    color: $font-color;
+    text-align: right;
   }
 
   img {

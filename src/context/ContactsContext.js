@@ -7,9 +7,13 @@ const initialState = {
   activeContact: {}, // Objeto del usuario actual
   contacts: [], // Todos los usuarios de la BD
   teams: [],
-  teamsMessages: { contacts: [] },
+  templates: [],
+  groups: [],
+  teamsMessages: {},
   activeTeam: null,
   activeFilter: "all",
+  activeTemplate: 0,
+  goBack: false,
 };
 
 export const ContactsProvider = ({ children }) => {

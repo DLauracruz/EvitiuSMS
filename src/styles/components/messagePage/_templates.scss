@@ -46,6 +46,18 @@
       &:not(:last-child) {
         margin-bottom: 1em;
       }
+
+      &:hover {
+        background-color: $primary;
+        cursor: pointer;
+        transition-duration: 0.3s;
+      }
+    }
+
+    .selected {
+      background-color: $primary;
+      cursor: pointer;
+      transition-duration: 0.3s;
     }
   }
 }

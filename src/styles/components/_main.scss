@@ -1,11 +1,35 @@
 .main__router {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 4em 1fr;
+  grid-template-rows: 2.5em calc(100% - 2.5em);
+  grid-template-areas: "nav back" "nav cont";
+
+  height: 100vh;
+  width: 100vw;
   background-color: $background;
 }
 
+.main__back {
+  width: 15em;
+  background-color: $quaternary;
+  border-radius: 0 0 0 5em;
+  margin-left: auto;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $tertiary;
+    transition-duration: 0.3s;
+  }
+}
+
+nav {
+  grid-area: nav;
+}
+
 .main__container {
-  padding: 1em 2em;
+  grid-area: cont;
+  padding: 0.5em 2em 1em 2em;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 2.5em);
 }

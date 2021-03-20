@@ -27,6 +27,12 @@
     border: 0.2em solid $dark-grey;
   }
 
+  h3 {
+    margin-top: 1em;
+    font-size: 1.4rem;
+    color: $font-color;
+  }
+
   .message__badge {
     display: flex;
     justify-content: space-between;
@@ -61,5 +67,27 @@
       background-color: $quaternary;
       color: $white;
     }
+  }
+
+  .message__container {
+    overflow-y: auto;
+
+    background-color: transparent;
+    border-radius: 0.5em;
+    padding: 1em;
+    height: 30vh;
+  }
+
+  .message__container-secondary {
+    @extend .message__container;
+    background-color: $white;
+
+    .message__name {
+      width: 100%;
+    }
+  }
+
+  button {
+    margin-top: 1em;
   }
 }

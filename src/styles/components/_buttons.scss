@@ -25,6 +25,44 @@
   }
 }
 
+.btn-outline-primary {
+  background-color: transparent;
+  border-radius: 2px;
+  border: 0.1em solid $red;
+  color: lighten($color: $red, $amount: 6);
+  font-weight: 500;
+
+  &:disabled {
+    background-color: lighten($color: $red, $amount: 6);
+    color: $white;
+  }
+
+  &:hover {
+    background-color: lighten($color: $red, $amount: 6);
+    color: $white;
+    transition: background-color 0.3s ease;
+  }
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border-radius: 2px;
+  border: 0.1em solid $green;
+  color: lighten($color: $green, $amount: 6);
+  font-weight: 500;
+
+  &:disabled {
+    background-color: lighten($color: $green, $amount: 6);
+    color: $white;
+  }
+
+  &:hover {
+    background-color: lighten($color: $green, $amount: 6);
+    color: $white;
+    transition: background-color 0.3s ease;
+  }
+}
+
 .btn-block {
   width: 100%;
 }

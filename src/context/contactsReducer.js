@@ -1,9 +1,23 @@
 import { types } from "./contactsTypes";
+import * as R from "ramda";
+import { useWith as sWith } from "ramda";
 
 export const contactsReducer = (state, action) => {
   console.log(action);
 
+  const partialEquals = R.ifElse(
+    R.is(Object),
+    sWith(R.where, [R.mapObjIndexed((x) => partialEquals(x)), R.identity]),
+    R.equals
+  );
+
   switch (action.type) {
+    case types.changeGoBack:
+      return {
+        ...state,
+        goBack: action.payload,
+      };
+
     case types.addContacts:
       return {
         ...state,
@@ -16,10 +30,17 @@ export const contactsReducer = (state, action) => {
         activeContact: { ...action.payload },
       };
 
-    case types.setActiveTeam:
+    case types.setActiveTemplate:
       return {
         ...state,
-        activeTeam: action.payload,
+        activeTemplate: action.payload,
+      };
+
+    case types.setActiveTeam:
+      console.log(action.payload);
+      return {
+        ...state,
+        activeTeam: { ...action.payload },
       };
 
     case types.setActiveFilter:
@@ -31,7 +52,53 @@ export const contactsReducer = (state, action) => {
     case types.addTeam:
       return {
         ...state,
-        teams: [...state.teams, action.payload],
+        teams: [
+          ...state.teams,
+          { name: action.payload.name, phone: action.payload.phone },
+        ],
+        teamsMessages: { ...state.teamsMessages, [action.payload.name]: [] },
+      };
+
+    case types.addGroup:
+      return {
+        ...state,
+        groups: [
+          ...state.groups,
+          {
+            name: action.payload.name,
+            desc: action.payload.desc,
+            contacts: [...action.payload.contacts],
+          },
+        ],
+      };
+
+    case types.addGroup:
+      return {
+        ...state,
+        groups: [
+          ...state.groups,
+          { name: action.payload.name, phone: action.payload.desc },
+        ],
+      };
+
+    case types.editGroup:
+      return {
+        ...state,
+        groups: state.groups.map((group, idx) =>
+          idx !== action.payload.id
+            ? group
+            : {
+                ...group,
+                name: action.payload.name,
+                desc: action.payload.desc,
+              }
+        ),
+      };
+
+    case types.removeGroup:
+      return {
+        ...state,
+        groups: state.groups.filter((_, idx) => idx !== action.payload),
       };
 
     case types.addMessage:
@@ -48,6 +115,48 @@ export const contactsReducer = (state, action) => {
         activeContact: {
           ...state.activeContact,
           messages: [...state.activeContact.messages, action.payload],
+        },
+      };
+
+    case types.addTemplate:
+      return {
+        ...state,
+        templates: [
+          ...state.templates,
+          { name: action.payload.name, message: action.payload.message },
+        ],
+      };
+
+    case types.removeMessage:
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) => {
+          return contact._id === state.activeContact._id
+            ? {
+                ...contact,
+                messages: contact.messages.filter(
+                  (message) => !partialEquals(message, action.payload)
+                ),
+              }
+            : contact;
+        }),
+        activeContact: {
+          ...state.activeContact,
+          messages: state.activeContact.messages.filter(
+            (message) => !partialEquals(message, action.payload)
+          ),
+        },
+      };
+
+    case types.addTeamsMessage:
+      return {
+        ...state,
+        teamsMessages: {
+          ...state.teamsMessages,
+          [action.payload.team]: [
+            ...state.teamsMessages[action.payload.team],
+            action.payload.message,
+          ],
         },
       };
 
@@ -176,7 +285,7 @@ export const contactsReducer = (state, action) => {
                 ...contact,
                 teams: contact.teams.filter((team) => {
                   console.log({ team, other: action.payload.team });
-                  return team !== action.payload.team;
+                  return team.name !== action.payload.team;
                 }),
               }
             : contact;

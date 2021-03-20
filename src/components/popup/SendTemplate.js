@@ -5,14 +5,15 @@ import { ContactsContext } from "../../context/ContactsContext";
 import { useToasts } from "react-toast-notifications";
 import { types } from "../../context/contactsTypes";
 
-export const AddTeamContact = ({ trigger }) => {
+import * as R from "ramda";
+
+export const SendTemplate = ({ trigger, group }) => {
   const [searchContacts, setSearchContacts] = useState("");
-  const [searchTeams, setSearchTeams] = useState("");
+  const [searchTemplates, setSearchTemplates] = useState("");
   const { addToast } = useToasts();
   const { contactsState, dispatch } = useContext(ContactsContext);
-  const { contacts, teams } = contactsState;
-  const [sltdContacts, setSltdContacts] = useState([]);
-  const [sltdTeams, setSltdTeams] = useState([]);
+  const { contacts, groups, activeContact, templates } = contactsState;
+  const [sltdTemplate, setSltdTemplate] = useState(templates[0]);
 
   const ref = useRef();
   const closeTooltip = () => ref.current.close();
@@ -23,42 +24,39 @@ export const AddTeamContact = ({ trigger }) => {
     setSearchContacts(target.value);
   };
 
-  const searchTeam = ({ target }) => {
-    setSearchTeams(target.value);
+  const searchTemplate = ({ target }) => {
+    setSearchTemplates(target.value);
   };
 
-  const selected = (init, set, cond) => {
-    if (init.includes(cond)) {
-      set(init.filter((sel) => sel !== cond));
-    } else {
-      set([...init, cond]);
-    }
-  };
-
-  const addTeamContacts = () => {
-    if (sltdContacts.length > 0 && sltdTeams.length > 0) {
-      sltdContacts.map((id) => {
+  const sendTemplate = () => {
+    if (groups[group].contacts.length > 0) {
+      groups[group].contacts.map((id) => {
         dispatch({
-          type: types.addMultiTeamContacts,
+          type: types.updateUnreaded,
+          payload: { id, value: 1 },
+        });
+
+        dispatch({
+          type: types.addMultiMessages,
           payload: {
-            _id: id,
-            teams: sltdTeams,
+            id,
+            message: {
+              origin: "from",
+              message: sltdTemplate.message,
+              date: new Date().toString(),
+            },
           },
         });
       });
 
-      addToast(`User(s) added successfully to there teams.`, {
+      addToast(`Message '${sltdTemplate.message}' was sended successfully.`, {
         appearance: "info",
       });
 
-      setSltdContacts([]);
-      setSltdTeams([]);
-      setSearchContacts("");
-      setSearchTeams("");
       closeTooltip();
     } else {
       addToast(
-        `You need to select one or more contacts and teams to confirm.`,
+        `You need to write something and select a contact if you want to send a message.`,
         {
           appearance: "error",
         }
@@ -70,7 +68,7 @@ export const AddTeamContact = ({ trigger }) => {
     <Popup ref={ref} trigger={trigger} modal>
       {(close) => (
         <div className="popup__add-contact">
-          <h4>Add Team Contact</h4>
+          <h4>Send Template</h4>
 
           <div className="popup__add-contact-list">
             <input
@@ -79,23 +77,15 @@ export const AddTeamContact = ({ trigger }) => {
               type="text"
               placeholder="Search..."
             />
-            <label>Contacts</label>
+            <label>Group Contacts</label>
             <ul className="scroll">
               {contacts.map(
                 (contact, idx) =>
+                  selectedClass(contact._id, groups[group].contacts) &&
                   contact.name
                     .toLowerCase()
                     .includes(searchContacts.toLowerCase()) && (
-                    <li
-                      onClick={() =>
-                        selected(sltdContacts, setSltdContacts, contact._id)
-                      }
-                      className={`b-shadow ${
-                        selectedClass(contact._id, sltdContacts) &&
-                        "popup__add-team-selected"
-                      }`}
-                      key={idx}
-                    >
+                    <li key={idx} className="b-shadow ">
                       <img
                         className="circle-img"
                         src="https://picsum.photos/200/200"
@@ -118,28 +108,32 @@ export const AddTeamContact = ({ trigger }) => {
           </div>
           <div className="popup__add-contact-list">
             <input
-              onChange={searchTeam}
-              value={searchTeams}
+              onChange={searchTemplate}
+              value={searchTemplates}
               type="text"
               placeholder="Search..."
             />
-            <label>Teams</label>
+            <label>Templates</label>
             <ul className="scroll">
-              {teams.map(
-                (team, idx) =>
-                  team.name !== "contacts" &&
-                  team.name
+              {templates.map(
+                (template, idx) =>
+                  template.name
                     .toLowerCase()
-                    .includes(searchTeams.toLowerCase()) && (
+                    .includes(searchTemplates.toLowerCase()) && (
                     <li
-                      onClick={() => selected(sltdTeams, setSltdTeams, team)}
+                      onClick={() => setSltdTemplate(template)}
                       className={`b-shadow ${
-                        selectedClass(team, sltdTeams) &&
+                        sltdTemplate.name === template.name &&
                         "popup__add-team-selected"
                       }`}
                       key={idx}
                     >
-                      <span>{team.name}</span>
+                      {console.log({
+                        name: template.name,
+                        prop: sltdTemplate.name,
+                      })}
+                      {console.log(sltdTemplate.name === template.name)}
+                      <span>{template.name}</span>
                     </li>
                   )
               )}
@@ -147,7 +141,7 @@ export const AddTeamContact = ({ trigger }) => {
           </div>
 
           <div className="popup__actions">
-            <button onClick={addTeamContacts}>Confirm</button>
+            <button onClick={sendTemplate}>Confirm</button>
             <button onClick={close}>Close</button>
           </div>
         </div>

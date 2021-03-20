@@ -2,6 +2,44 @@
   width: 80%;
   overflow-y: auto;
 
+  .admin__select {
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 0 1em;
+
+    button {
+      width: 50%;
+      height: 3em;
+      background-color: $tertiary;
+      color: $font-color;
+
+      &:first-child {
+        border-radius: 0.4em 0 0 0.4em;
+      }
+
+      &:last-child {
+        border-radius: 0 0.4em 0.4em 0;
+      }
+
+      &:hover {
+        background-color: darken($color: $tertiary, $amount: 5);
+        transition-duration: 0.3s;
+        cursor: pointer;
+      }
+    }
+
+    .selected {
+      background-color: $secondary;
+      color: $white;
+
+      &:hover {
+        background-color: $secondary !important;
+        transition-duration: 0.3s;
+        cursor: default !important;
+      }
+    }
+  }
+
   table {
     width: 100%;
     padding: 0 1em;
