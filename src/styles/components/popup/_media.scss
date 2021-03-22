@@ -7,17 +7,35 @@
       width: 8em;
       height: 8em;
       margin-right: 1em;
-      border-radius: 0.5em;
+      border-radius: 0.5em 0.5em 0 0;
     }
 
     span {
       background-color: $primary;
-      padding: 0.4em 1em;
       color: $white;
       text-transform: uppercase;
       border-radius: 0.2em;
-      margin-right: 1em;
       cursor: pointer;
+    }
+
+    &__download {
+      margin-right: 1em;
+
+      a {
+        text-decoration: none;
+        color: $secondary;
+        border-radius: 0 0 0.5em 0.5em;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        border: 2px solid $secondary;
+
+        &:hover {
+          background-color: $secondary;
+          color: $white;
+          transition-duration: 0.3s;
+        }
+      }
     }
   }
 
@@ -28,6 +46,9 @@
     margin-top: 1em;
 
     button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 30%;
       height: 2em;
       margin-bottom: 1em;

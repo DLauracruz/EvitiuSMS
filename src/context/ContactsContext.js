@@ -4,7 +4,7 @@ import { contactsReducer } from "./contactsReducer";
 export const ContactsContext = createContext();
 
 const initialState = {
-  activeContact: {}, // Objeto del usuario actual
+  activeContact: null, // Objeto del usuario actual
   contacts: [], // Todos los usuarios de la BD
   teams: [],
   templates: [],

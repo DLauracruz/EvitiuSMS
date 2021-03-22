@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router";
 
 import { ContactsContext } from "../../context/ContactsContext";
 import { types } from "../../context/contactsTypes";
@@ -10,6 +11,13 @@ export const Chat = () => {
   const [message, setMessage] = useState("");
   const { contactsState, dispatch } = useContext(ContactsContext);
   const { activeContact, activeTeam, teamsMessages } = contactsState;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (activeContact === null) {
+      history.push("/auth/login");
+    }
+  });
 
   const onChange = ({ target }) => {
     setMessage(target.value);

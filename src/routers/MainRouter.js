@@ -28,14 +28,14 @@ export const MainRouter = () => {
   };
   const showBack = () => dispatch({ type: types.changeGoBack, payload: true });
 
-  useEffect(() => {
-    console.log(location.pathname);
-    if (location.pathname !== "/chat") {
-      showBack();
-    } else {
-      dispatch({ type: types.changeGoBack, payload: false });
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   console.log(location.pathname);
+  //   if (location.pathname !== "/chat") {
+  //     showBack();
+  //   } else {
+  //     dispatch({ type: types.changeGoBack, payload: false });
+  //   }
+  // }, [location.pathname]);
 
   return (
     <div className="main__router">

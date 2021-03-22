@@ -1,4 +1,5 @@
 export const types = {
+  logged: "[Contacts, Logged]",
   changeGoBack: "[Contacts, Change Go Back]",
   addContacts: "[Contacts, Add contacts]",
   setActiveContact: "[Contacts, Set contact object to activeContact]",
