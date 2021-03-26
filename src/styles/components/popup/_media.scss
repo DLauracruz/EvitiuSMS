@@ -20,13 +20,14 @@
 
     &__download {
       margin-right: 1em;
+      border-radius: 0.5em;
 
       a {
         text-decoration: none;
         color: $secondary;
-        border-radius: 0 0 0.5em 0.5em;
+        border-radius: 0.2em;
         display: inline-block;
-        width: 100%;
+        width: 50%;
         text-align: center;
         border: 2px solid $secondary;
 
@@ -34,6 +35,32 @@
           background-color: $secondary;
           color: $white;
           transition-duration: 0.3s;
+        }
+      }
+
+      #react-modal-image-img {
+        width: auto;
+        height: auto;
+      }
+
+      .__react_modal_image__header {
+        span {
+          width: 5em;
+          background-color: transparent;
+        }
+
+        a {
+          border: none;
+        }
+
+        .__react_modal_image__icon_menu {
+          display: flex;
+          flex-flow: row;
+          width: 10em;
+        }
+
+        .__react_modal_image__caption {
+          width: 60vw;
         }
       }
     }

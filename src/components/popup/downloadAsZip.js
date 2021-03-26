@@ -7,10 +7,13 @@ export function saveAsZip(files) {
   const zip = new JSZip();
   let count = 0;
   const zipFilename = "evidence.zip";
+
   urls.forEach(async function (url) {
     const urlArr = url.split("/");
     const filename = urlArr[urlArr.length - 1];
     console.log(filename);
+    console.log(url);
+
     try {
       const file = await JSZipUtils.getBinaryContent(url);
       zip.file(`${filename}.png`, file, { binary: true });
