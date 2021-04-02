@@ -3,8 +3,11 @@ import { ContactsContext } from "../../context/ContactsContext";
 import { types } from "../../context/contactsTypes";
 import { AddUser } from "../popup/AddUser";
 
+import { CSVLink, CSVDownload } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { AddClient } from "../popup/AddClient";
+import { ChangeRole } from "../popup/ChangeRole";
 
 export const Panel = ({ setSearch, search }) => {
   const { contactsState, dispatch } = useContext(ContactsContext);
@@ -14,7 +17,17 @@ export const Panel = ({ setSearch, search }) => {
     setSearch(target.value);
   };
 
-  const filters = ["personal", "admin", "user", "all"];
+  const headers = ["Name", "Role", "Teams", "Email", "Phone"];
+
+  const data = contacts.map((contact) => [
+    contact.name,
+    contact.role,
+    contact.teams.map((team) => team.name),
+    contact.email,
+    contact.phone,
+  ]);
+
+  const filters = ["personal", "admin", "all"];
 
   const setActivefilter = (filter) =>
     dispatch({ type: types.setActiveFilter, payload: filter });
@@ -31,14 +44,6 @@ export const Panel = ({ setSearch, search }) => {
 
     const title = "Admin Report";
     const headers = [["Name", "Role", "Teams", "Email", "Phone"]];
-
-    const data = contacts.map((contact) => [
-      contact.name,
-      contact.role,
-      contact.teams.map((team) => team.name),
-      contact.email,
-      contact.phone,
-    ]);
 
     let content = {
       startY: 50,
@@ -69,12 +74,31 @@ export const Panel = ({ setSearch, search }) => {
           </button>
         }
       />
+      <AddClient
+        oppened={true}
+        trigger={
+          <button className="btn btn-primary btn-block">
+            Add Client <i class="fas fa-male"></i>
+          </button>
+        }
+      />
+      <ChangeRole
+        oppened={true}
+        trigger={
+          <button className="btn btn-primary btn-block">
+            Change Role <i class="fas fa-male"></i>
+          </button>
+        }
+      />
       <button className="btn btn-outline-secondary btn-block">
         Import Customers
       </button>
       <button onClick={exportPDF} className="btn btn-outline-primary btn-block">
         Export PDF
       </button>
+      <CSVLink headers={headers} filename={"random.csv"} data={data}>
+        Export CSV
+      </CSVLink>
 
       <ul className="admin__panel-container b-shadow">
         {filters.map((filter, idx) => (

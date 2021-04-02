@@ -110,6 +110,38 @@
     }
   }
 
+  .popup__change-contact-role {
+    width: 48%;
+
+    label {
+      color: $tertiary;
+    }
+
+    .popup__contact-role {
+      margin-top: 1em;
+
+      div {
+        color: $tertiary;
+
+        & > span {
+          background-color: $primary;
+          color: $white;
+          padding: 0.2em 0.5em;
+          border-radius: 0.2em;
+        }
+      }
+
+      select {
+        margin-top: 1.2em;
+        width: 100%;
+        color: $white;
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+        background-color: $secondary;
+      }
+    }
+  }
+
   .popup__actions {
     display: flex;
     justify-content: flex-end;

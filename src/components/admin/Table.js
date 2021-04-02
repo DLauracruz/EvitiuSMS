@@ -9,7 +9,7 @@ export const Table = ({ search }) => {
   const [tableSelected, setTableSelected] = useState(true);
 
   const { contactsState } = useContext(ContactsContext);
-  const { contacts, activeFilter } = contactsState;
+  const { contacts, clients, activeFilter } = contactsState;
 
   return (
     <div className="admin__table scroll">
@@ -24,7 +24,7 @@ export const Table = ({ search }) => {
           onClick={() => setTableSelected(false)}
           className={`${tableSelected !== true && "selected"}`}
         >
-          Contacts
+          Clients
         </button>
       </div>
       {contacts.length > 0 ? (
@@ -100,13 +100,12 @@ export const Table = ({ search }) => {
                       </tr>
                     )
                 )
-              : contacts.map(
-                  (contact, idx) =>
-                    contact.role === "client" &&
-                    contact.name
+              : clients.map(
+                  (client, idx) =>
+                    client.name
                       .toLowerCase()
                       .includes(search.toLowerCase()) && (
-                      <tr key={contact._id}>
+                      <tr key={client._id}>
                         <td
                           {...getToggleProps({
                             onClick: () => {
@@ -131,11 +130,11 @@ export const Table = ({ search }) => {
                             }`}
                           ></i>
                         </td>
-                        <td>{contact.name}</td>
-                        <td>{contact.role}</td>
-                        <td>{contact._id}</td>
+                        <td>{client.name}</td>
+                        <td>{client.role}</td>
+                        <td>{client._id}</td>
                         <td>
-                          {contact.teams.map((team, idx) => (
+                          {client.teams.map((team, idx) => (
                             <>
                               <span key={idx}>{team.name}</span>,{" "}
                             </>
@@ -151,9 +150,9 @@ export const Table = ({ search }) => {
                             className="expanded-row-content"
                             {...getCollapseProps()}
                           >
-                            <div>Email: {contact.email}</div>
-                            <div>Role: {contact.role}</div>
-                            <div>Phone: {contact.phone}</div>
+                            <div>Email: {client.email}</div>
+                            <div>Role: {client.role}</div>
+                            <div>Phone: {client.phone}</div>
                           </td>
                         )}
                       </tr>

@@ -6,6 +6,7 @@ export const ContactsContext = createContext();
 const initialState = {
   activeContact: null, // Objeto del usuario actual
   contacts: [], // Todos los usuarios de la BD
+  clients: [],
   teams: [],
   templates: [],
   groups: [],

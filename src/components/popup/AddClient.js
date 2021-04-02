@@ -7,7 +7,7 @@ import { useToasts } from "react-toast-notifications";
 import { types } from "../../context/contactsTypes";
 import sid from "shortid";
 
-export const AddUser = ({ trigger }) => {
+export const AddClient = ({ trigger }) => {
   const { addToast } = useToasts();
   const { dispatch } = useContext(ContactsContext);
   const { register, handleSubmit, reset } = useForm();
@@ -16,34 +16,30 @@ export const AddUser = ({ trigger }) => {
   const closeTooltip = () => ref.current.close();
 
   const onSubmit = (data) => {
-    if (
-      data.name &&
-      data.email &&
-      data.phone &&
-      data.role !== "Select one option..."
-    ) {
+    if (data.name && data.email && data.phone) {
       dispatch({
-        type: types.addContacts,
+        type: types.addClients,
         payload: [
           {
             _id: sid.generate(),
-            teams: [{ name: "contacts", phone: 5500000000 }],
+            teams: [{ name: "clients", phone: 5500000000 }],
             notes: [],
             unreaded: 0,
             messages: [],
+            role: "client",
             ...data,
           },
         ],
       });
 
-      addToast(`User '${data.name}' was added successfully.`, {
+      addToast(`Client '${data.name}' was added successfully.`, {
         appearance: "success",
       });
 
       reset();
       closeTooltip();
     } else {
-      addToast(`You need to fill all inputs if you want create a new user.`, {
+      addToast(`You need to fill all inputs if you want create a new client.`, {
         appearance: "error",
       });
     }
@@ -53,7 +49,7 @@ export const AddUser = ({ trigger }) => {
     <Popup ref={ref} trigger={trigger} modal>
       {(close) => (
         <div className="popup__add-user">
-          <h4>Add User</h4>
+          <h4>Add Client</h4>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="popup__field">
@@ -82,14 +78,6 @@ export const AddUser = ({ trigger }) => {
                 name="phone"
                 placeholder="+ 52 00 0000 0000"
               />
-            </div>
-            <div className="popup__field">
-              <label>Role</label>
-              <select ref={register({ required: true })} name="role">
-                <option>Select one option...</option>
-                <option value="client">Client</option>
-                <option value="admin">Admin</option>
-              </select>
             </div>
 
             <div className="popup__actions">

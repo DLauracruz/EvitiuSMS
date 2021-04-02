@@ -1,7 +1,9 @@
 export const types = {
   logged: "[Contacts, Logged]",
   changeGoBack: "[Contacts, Change Go Back]",
+  changeRole: "[Clients, Change role]",
   addContacts: "[Contacts, Add contacts]",
+  addClients: "[Clients, Add clients]",
   setActiveContact: "[Contacts, Set contact object to activeContact]",
   setActiveTeam: "[Contacts, Set team to activeTeam]",
   setActiveFilter: "[Contacts, Set filter to activeFilter]",

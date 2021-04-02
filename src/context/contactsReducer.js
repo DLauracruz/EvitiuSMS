@@ -24,6 +24,22 @@ export const contactsReducer = (state, action) => {
         contacts: [...state.contacts, ...action.payload],
       };
 
+    case types.changeRole:
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) => {
+          return contact._id === action.payload.id
+            ? { ...contact, role: action.payload.role }
+            : contact;
+        }),
+      };
+
+    case types.addClients:
+      return {
+        ...state,
+        clients: [...state.clients, ...action.payload],
+      };
+
     case types.setActiveContact:
       return {
         ...state,
