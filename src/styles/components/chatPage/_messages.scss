@@ -9,6 +9,19 @@
   height: 80%;
   outline: none;
 
+  & > div > img {
+    align-self: flex-end;
+    width: 70%;
+    border-radius: 0.6em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+  }
+
+  .__react_modal_image__modal_container {
+    position: fixed;
+    z-index: 10 !important;
+  }
+
   @mixin message {
     max-width: 70%;
     border-radius: 0.4em;
@@ -31,6 +44,16 @@
       color: darken($color: $red, $amount: 5) !important;
       transition-duration: 0.3s;
       cursor: pointer;
+    }
+  }
+
+  .img {
+    &__from {
+      margin-left: auto;
+    }
+
+    &__to {
+      margin-right: auto;
     }
   }
 
@@ -57,13 +80,6 @@
     align-self: flex-end;
     color: $font-color;
     text-align: right;
-  }
-
-  img {
-    align-self: flex-end;
-    width: 70%;
-    border-radius: 0.6em;
-    margin-bottom: 0.5em;
   }
 
   .messages__drop-zone > .drag {

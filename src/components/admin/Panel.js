@@ -3,7 +3,7 @@ import { ContactsContext } from "../../context/ContactsContext";
 import { types } from "../../context/contactsTypes";
 import { AddUser } from "../popup/AddUser";
 
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { AddClient } from "../popup/AddClient";
@@ -78,7 +78,7 @@ export const Panel = ({ setSearch, search }) => {
         oppened={true}
         trigger={
           <button className="btn btn-primary btn-block">
-            Add Client <i class="fas fa-male"></i>
+            Add Contact <i class="fas fa-male"></i>
           </button>
         }
       />

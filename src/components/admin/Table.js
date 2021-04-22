@@ -24,7 +24,7 @@ export const Table = ({ search }) => {
           onClick={() => setTableSelected(false)}
           className={`${tableSelected !== true && "selected"}`}
         >
-          Clients
+          Contacts
         </button>
       </div>
       {contacts.length > 0 ? (

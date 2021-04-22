@@ -4,10 +4,13 @@ import { useDropzone } from "react-dropzone";
 import { ContactsContext } from "../../context/ContactsContext";
 import { scrollToBottom } from "../../helpers/scrollToBottom";
 
+import ModalImage from "react-modal-image";
+
 import * as fns from "date-fns";
 import { types } from "../../context/contactsTypes";
 
-export const Messages = ({ dispatchFiles }) => {
+export const Messages = (props) => {
+  const { dispatchFiles } = props;
   const { contactsState, dispatch } = useContext(ContactsContext);
   const { activeContact, activeTeam, teamsMessages } = contactsState;
   const [mouseOver, setMouseOver] = useState(false);
@@ -53,7 +56,7 @@ export const Messages = ({ dispatchFiles }) => {
 
   return (
     <div
-      id="messages"
+      id="divToPrint"
       className="messages__messages scroll b-shadow"
       {...getRootProps()}
     >
@@ -113,9 +116,9 @@ export const Messages = ({ dispatchFiles }) => {
                   </span>
                 </>
               ) : (
-                <img
-                  key={idx}
-                  src={URL.createObjectURL(file)}
+                <ModalImage
+                  small={URL.createObjectURL(file)}
+                  large={URL.createObjectURL(file)}
                   alt={file.name}
                 />
               )
@@ -171,7 +174,12 @@ export const Messages = ({ dispatchFiles }) => {
                 </span>
               </>
             ) : (
-              <img key={idx} src={URL.createObjectURL(file)} alt={file.name} />
+              <ModalImage
+                small={URL.createObjectURL(file)}
+                large={URL.createObjectURL(file)}
+                alt={file.name}
+                className={`img__${origin === "from" ? "from" : "to"}`}
+              />
             )
           )}
 

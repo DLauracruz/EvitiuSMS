@@ -1,15 +1,17 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import Popup from "reactjs-popup";
 import { ContactsContext } from "../../context/ContactsContext";
 import { useToasts } from "react-toast-notifications";
 import { types } from "../../context/contactsTypes";
 
+import * as R from "ramda";
+
 export const ChangeRole = ({ trigger }) => {
   const [searchContacts, setSearchContacts] = useState("");
   const { addToast } = useToasts();
   const { contactsState, dispatch } = useContext(ContactsContext);
-  const { contacts } = contactsState;
+  const { contacts, teams } = contactsState;
   const [sltdContacts, setSltdContacts] = useState([]);
   const roles = ["personal", "admin"];
 
@@ -17,7 +19,6 @@ export const ChangeRole = ({ trigger }) => {
   const closeTooltip = () => ref.current.close();
 
   const selectedClass = (cond, array) => {
-    console.log(sltdContacts);
     return cond === array[0]?._id;
   };
 
@@ -26,6 +27,7 @@ export const ChangeRole = ({ trigger }) => {
   };
 
   const selected = (contact) => {
+    console.log(contact);
     setSltdContacts([contact]);
   };
 
@@ -38,6 +40,23 @@ export const ChangeRole = ({ trigger }) => {
     addToast(`Role changed successfully to ${e.target.value}.`, {
       appearance: "success",
     });
+  };
+
+  const currentTeam = (team) => {
+    if (sltdContacts[0]?.teams !== undefined) {
+      console.log(
+        R.find(R.propEq("name", team.name))(sltdContacts[0]?.teams) !==
+          undefined
+          ? true
+          : false
+      );
+      return R.find(R.propEq("name", team.name))(sltdContacts[0]?.teams) !==
+        undefined
+        ? true
+        : false;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -94,12 +113,6 @@ export const ChangeRole = ({ trigger }) => {
               <div>Name: {sltdContacts[0]?.name}</div>
               <div>Role: {sltdContacts[0]?.role}</div>
               <div>Phone: {sltdContacts[0]?.phone}</div>
-              <div>Teams:</div>
-              <div>
-                {sltdContacts[0]?.teams.map(({ name }) => (
-                  <span>{name}</span>
-                ))}
-              </div>
 
               <select onChange={changeRole} name="role" id="role">
                 {roles.map((role) => (
@@ -110,6 +123,15 @@ export const ChangeRole = ({ trigger }) => {
                   </option>
                 ))}
               </select>
+
+              <div className="teams-role">
+                {console.log(teams)}
+                {teams.map((team) => (
+                  <span className={`${currentTeam(team) && "current-team"}`}>
+                    {team.name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 

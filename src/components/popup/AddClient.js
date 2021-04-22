@@ -49,7 +49,7 @@ export const AddClient = ({ trigger }) => {
     <Popup ref={ref} trigger={trigger} modal>
       {(close) => (
         <div className="popup__add-user">
-          <h4>Add Client</h4>
+          <h4>Add Contact</h4>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="popup__field">
@@ -77,6 +77,42 @@ export const AddClient = ({ trigger }) => {
                 type="text"
                 name="phone"
                 placeholder="+ 52 00 0000 0000"
+              />
+            </div>
+            <div className="popup__field">
+              <label>Birthday</label>
+              <input
+                ref={register({ required: true })}
+                type="text"
+                name="birthday"
+                placeholder="12/31/1998"
+              />
+            </div>
+            <div className="popup__field">
+              <label>Address</label>
+              <input
+                ref={register({ required: true })}
+                type="text"
+                name="address"
+                placeholder="Atizapan de Zaragoza, Las penitas, Coral #7"
+              />
+            </div>
+            <div className="popup__field">
+              <label>Company</label>
+              <input
+                ref={register({ required: true })}
+                type="text"
+                name="company"
+                placeholder="Microsoft"
+              />
+            </div>
+            <div className="popup__field">
+              <label>Website</label>
+              <input
+                ref={register({ required: true })}
+                type="text"
+                name="website"
+                placeholder="www.example.com"
               />
             </div>
 

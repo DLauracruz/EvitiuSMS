@@ -18,6 +18,18 @@
     font-size: 1.2rem;
   }
 
+  a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background-color: $dark-grey;
+    text-decoration: none;
+    margin-top: 1em;
+    color: white;
+    border-radius: 0.5em;
+    padding: 1em;
+  }
+
   .admin__panel-container {
     margin-top: 1em;
     background-color: $white;

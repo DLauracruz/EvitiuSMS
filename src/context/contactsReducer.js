@@ -53,7 +53,6 @@ export const contactsReducer = (state, action) => {
       };
 
     case types.setActiveTeam:
-      console.log(action.payload);
       return {
         ...state,
         activeTeam: { ...action.payload },
@@ -292,7 +291,6 @@ export const contactsReducer = (state, action) => {
       };
 
     case types.removeMultiTeamContacts:
-      console.log(action.payload);
       return {
         ...state,
         contacts: state.contacts.map((contact) => {
@@ -300,7 +298,6 @@ export const contactsReducer = (state, action) => {
             ? {
                 ...contact,
                 teams: contact.teams.filter((team) => {
-                  console.log({ team, other: action.payload.team });
                   return team.name !== action.payload.team;
                 }),
               }

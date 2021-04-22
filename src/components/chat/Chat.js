@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 import { ContactsContext } from "../../context/ContactsContext";
 import { types } from "../../context/contactsTypes";
 
 import { scrollToBottomAnimated } from "../../helpers/scrollToBottom";
 import { Messages } from "./Messages";
+import { format } from "date-fns";
 
 export const Chat = () => {
   const [message, setMessage] = useState("");
   const { contactsState, dispatch } = useContext(ContactsContext);
-  const { activeContact, activeTeam, teamsMessages } = contactsState;
+  const { activeContact, activeTeam } = contactsState;
   const history = useHistory();
 
   useEffect(() => {
@@ -24,16 +27,26 @@ export const Chat = () => {
   };
 
   const dispatchFiles = (files) => {
-    files.map((file) => {
+    files.forEach((file) => {
       if (activeTeam.name === "contacts") {
         dispatch({
           type: types.addMessage,
-          payload: { origin: "from", message: "", file },
+          payload: {
+            origin: "from",
+            message: "",
+            date: new Date().toString(),
+            file,
+          },
         });
       } else {
         dispatch({
           type: types.addTeamsMessage,
-          payload: { origin: "from", message: "", file },
+          payload: {
+            origin: "from",
+            message: "",
+            date: new Date().toString(),
+            file,
+          },
         });
       }
     });
@@ -71,13 +84,21 @@ export const Chat = () => {
           },
         });
       }
-
-      setMessage("");
-
-      setTimeout(() => {
-        scrollToBottomAnimated("messages");
-      }, 10);
     }
+  };
+
+  const printDocument = () => {
+    const input = document.getElementById("divToPrint");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.setFontSize(15);
+      pdf.text(35, 25, `${activeContact.name} | Diana Laura Cruz Cruz`);
+      pdf.setFontSize(6);
+      pdf.text(35, 28, format(new Date(), "MMMM dd, y"));
+      pdf.addImage(imgData, "JPEG", 10, 35);
+      pdf.save("download.pdf");
+    });
   };
 
   return (
@@ -103,7 +124,11 @@ export const Chat = () => {
         </div>
 
         <div className="chat__action-buttons">
-          <button className="btn btn-primary btn-block">
+          <button
+            onClick={printDocument}
+            value="Download"
+            className="btn btn-primary btn-block"
+          >
             Print <i className="fa fa-print"></i>
           </button>
           <button className="btn btn-primary btn-block">
