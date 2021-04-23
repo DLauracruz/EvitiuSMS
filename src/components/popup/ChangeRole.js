@@ -16,7 +16,6 @@ export const ChangeRole = ({ trigger }) => {
   const roles = ["personal", "admin"];
 
   const ref = useRef();
-  const closeTooltip = () => ref.current.close();
 
   const selectedClass = (cond, array) => {
     return cond === array[0]?._id;

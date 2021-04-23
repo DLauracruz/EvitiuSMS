@@ -4,6 +4,7 @@ import { types } from "../../context/contactsTypes";
 import { scrollToBottom } from "../../helpers/scrollToBottom";
 
 import * as R from "ramda";
+import { NumberMessage } from "../popup/NumberMessage";
 
 export const Contacts = () => {
   const { contactsState, dispatch } = useContext(ContactsContext);
@@ -93,6 +94,14 @@ export const Contacts = () => {
             )
         )}
       </div>
+
+      <NumberMessage
+        trigger={
+          <button>
+            <i class="fas fa-plus"></i>
+          </button>
+        }
+      />
     </div>
   );
 };

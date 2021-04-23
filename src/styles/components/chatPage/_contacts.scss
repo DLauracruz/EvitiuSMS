@@ -149,4 +149,29 @@
       }
     }
   }
+
+  button {
+    position: fixed;
+    right: 4em;
+    bottom: 3em;
+    padding: 1em;
+    border-radius: 50%;
+    background-color: $red;
+    border: $red 2px solid;
+    cursor: pointer;
+
+    i {
+      font-size: 2rem;
+      color: $light-grey;
+    }
+
+    &:hover {
+      background-color: $light-grey;
+      transition-duration: 0.3s;
+
+      i {
+        color: $red;
+      }
+    }
+  }
 }

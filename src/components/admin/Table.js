@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { ChangeRole } from "../popup/ChangeRole";
 import { ContactsContext } from "../../context/ContactsContext";
 import useCollapse from "react-collapsed";
 
@@ -83,9 +84,14 @@ export const Table = ({ search }) => {
                           ))}
                         </td>
                         <td>
-                          <button>
-                            <i className="far fa-edit"></i>
-                          </button>
+                          <ChangeRole
+                            oppened={true}
+                            trigger={
+                              <button>
+                                <i className="far fa-edit"></i>
+                              </button>
+                            }
+                          />
                         </td>
                         {openUserDetail === idx && (
                           <td

@@ -4,3 +4,38 @@
 @import "./addTeamContact";
 @import "./addGroup";
 @import "./media";
+@import "./numberMessage";
+
+.popup__actions {
+  display: flex;
+  margin-top: 1em;
+
+  button {
+    width: 30%;
+    height: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: $white;
+    background-color: $quaternary;
+    border-radius: 0.2em;
+    cursor: pointer;
+    margin-right: 1em;
+
+    &:last-child {
+      background-color: $secondary;
+    }
+
+    i {
+      margin-right: 0.5em;
+    }
+
+    &:hover {
+      background-color: darken($color: $primary, $amount: 10);
+      transition-duration: 0.3s;
+    }
+
+    &:disabled {
+      background-color: lighten($color: $quaternary, $amount: 20);
+    }
+  }
+}

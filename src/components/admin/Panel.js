@@ -7,7 +7,6 @@ import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { AddClient } from "../popup/AddClient";
-import { ChangeRole } from "../popup/ChangeRole";
 
 export const Panel = ({ setSearch, search }) => {
   const { contactsState, dispatch } = useContext(ContactsContext);
@@ -79,14 +78,6 @@ export const Panel = ({ setSearch, search }) => {
         trigger={
           <button className="btn btn-primary btn-block">
             Add Contact <i class="fas fa-male"></i>
-          </button>
-        }
-      />
-      <ChangeRole
-        oppened={true}
-        trigger={
-          <button className="btn btn-primary btn-block">
-            Change Role <i class="fas fa-male"></i>
           </button>
         }
       />
