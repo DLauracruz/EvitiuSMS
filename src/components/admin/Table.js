@@ -44,11 +44,12 @@ export const Table = ({ search }) => {
             {tableSelected
               ? contacts.map(
                   (contact, idx) =>
-                    (contact.role === activeFilter || activeFilter === "all") &&
-                    contact.name
+                    (contact?.role === activeFilter ||
+                      activeFilter === "all") &&
+                    contact?.name
                       .toLowerCase()
                       .includes(search.toLowerCase()) && (
-                      <tr key={contact._id}>
+                      <tr key={contact?._id}>
                         <td
                           {...getToggleProps({
                             onClick: () => {
@@ -73,11 +74,11 @@ export const Table = ({ search }) => {
                             }`}
                           ></i>
                         </td>
-                        <td>{contact.name}</td>
-                        <td>{contact.role}</td>
-                        <td>{contact._id}</td>
+                        <td>{contact?.name}</td>
+                        <td>{contact?.role}</td>
+                        <td>{contact?._id}</td>
                         <td>
-                          {contact.teams.map((team, idx) => (
+                          {contact?.teams.map((team, idx) => (
                             <>
                               <span key={idx}>{team.name}</span>,{" "}
                             </>
@@ -86,6 +87,7 @@ export const Table = ({ search }) => {
                         <td>
                           <ChangeRole
                             oppened={true}
+                            clientIdx={idx}
                             trigger={
                               <button>
                                 <i className="far fa-edit"></i>

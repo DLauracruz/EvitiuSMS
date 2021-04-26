@@ -1,126 +1,142 @@
 .popup__number {
-  .popup__field {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
+	.popup__field {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
 
-    label {
-      color: white;
-      background-color: $primary;
-      padding: 0 0.5em;
-      text-align: center;
-      border-radius: 1em;
-      width: 10em;
-      margin-bottom: 0.5em;
-    }
+		label {
+			color: white;
+			background-color: $primary;
+			padding: 0 0.5em;
+			text-align: center;
+			border-radius: 1em;
+			width: 10em;
+			margin-bottom: 0.5em;
+		}
 
-    input,
-    select {
-      cursor: pointer;
-      margin-bottom: 1em;
-      border-radius: 0.2em;
-      background-color: $light-grey;
-      padding: 0 1em;
-      height: 2.5em;
-    }
+		input,
+		select {
+			cursor: pointer;
+			margin-bottom: 1em;
+			border-radius: 0.2em;
+			background-color: $light-grey;
+			padding: 0 1em;
+			height: 2.5em;
+		}
 
-    textarea {
-      border: $light-grey 0.2em solid;
-      border-radius: 0.6em;
-      padding: 1em;
-    }
-  }
+		textarea {
+			border: $light-grey 0.2em solid;
+			border-radius: 0.6em;
+			padding: 1em;
+			max-width: 100%;
+		}
+	}
 
-  @mixin toggler(
-    $size: 33px,
-    $transition: 0.2s ease-out,
-    $color-bg: #e1e1e1,
-    $color-on: #16b5ff
-  ) {
-    background: $color-bg;
-    border-radius: $size * 2;
-    width: $size * 2.5;
-    transition: $transition;
+	.files__img {
+		width: 100%;
+		display: flex;
+		overflow-x: auto;
+		margin-top: .5em;
 
-    &__label input:checked ~ .toggler {
-      background: $color-on;
-    }
+		img {
+			width: 4em;
+			height: 4em;
+			margin-right: 0.5em;
+			border-radius: .2em;
+			object-fit: cover;
+		}
+	}
 
-    &::before {
-      border-radius: $size;
-      width: $size;
-      height: $size;
-      transition: $transition;
-    }
-  }
+	@mixin toggler(
+		$size: 33px,
+		$transition: 0.2s ease-out,
+		$color-bg: #e1e1e1,
+		$color-on: #16b5ff
+	) {
+		background: $color-bg;
+		border-radius: $size * 2;
+		width: $size * 2.5;
+		transition: $transition;
 
-  .toggler {
-    padding: 3px;
-    position: relative;
+		&__label input:checked ~ .toggler {
+			background: $color-on;
+		}
 
-    @keyframes moveCircle1 {
-      50% {
-        padding: 0 12%;
-      }
-    }
+		&::before {
+			border-radius: $size;
+			width: $size;
+			height: $size;
+			transition: $transition;
+		}
+	}
 
-    @keyframes moveCircle2 {
-      50% {
-        padding: 0 12%;
-      }
-    }
+	.toggler {
+		padding: 3px;
+		position: relative;
 
-    &__label {
-      user-select: none;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
+		@keyframes moveCircle1 {
+			50% {
+				padding: 0 12%;
+			}
+		}
 
-      span {
-        margin-right: 1em;
-      }
+		@keyframes moveCircle2 {
+			50% {
+				padding: 0 12%;
+			}
+		}
 
-      input {
-        &:checked {
-          ~ .toggler {
-            &::before {
-              transform: translateX(-100%);
-              left: 100%;
-              animation: moveCircle2 0.2s ease 1;
-            }
-          }
-        }
-      }
-    }
+		&__label {
+			user-select: none;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
 
-    &::before {
-      content: "";
-      display: block;
-      background: white;
-      position: relative;
-      left: 0;
-      animation: moveCircle1 0.2s ease 1;
-    }
-  }
+			span {
+				margin-right: 1em;
+			}
 
-  .toggler__label {
-    display: flex;
-    justify-content: space-between;
-    width: 10em;
-    margin-bottom: 1em;
+			input {
+				&:checked {
+					~ .toggler {
+						&::before {
+							transform: translateX(-100%);
+							left: 100%;
+							animation: moveCircle2 0.2s ease 1;
+						}
+					}
+				}
+			}
+		}
 
-    span {
-      margin: 0;
-      padding: 0;
-    }
-  }
+		&::before {
+			content: '';
+			display: block;
+			background: white;
+			position: relative;
+			left: 0;
+			animation: moveCircle1 0.2s ease 1;
+		}
+	}
 
-  .toggler {
-    @include toggler(
-      20px,
-      0.2s cubic-bezier(0.7, 0.15, 0.36, 1),
-      #e1e1e1,
-      #16b5ff
-    );
-  }
+	.toggler__label {
+		display: flex;
+		justify-content: space-between;
+		width: 10em;
+		margin-bottom: 1em;
+
+		span {
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.toggler {
+		@include toggler(
+			20px,
+			0.2s cubic-bezier(0.7, 0.15, 0.36, 1),
+			#e1e1e1,
+			#16b5ff
+		);
+	}
 }

@@ -16,7 +16,7 @@ export const AddClient = ({ trigger }) => {
   const closeTooltip = () => ref.current.close();
 
   const onSubmit = (data) => {
-    if (data.name && data.email && data.phone) {
+    if (data.phone) {
       dispatch({
         type: types.addClients,
         payload: [
@@ -27,6 +27,7 @@ export const AddClient = ({ trigger }) => {
             unreaded: 0,
             messages: [],
             role: "client",
+            name: data.name ? data.name : "No name",
             ...data,
           },
         ],
@@ -54,21 +55,11 @@ export const AddClient = ({ trigger }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="popup__field">
               <label>Name</label>
-              <input
-                ref={register({ required: true })}
-                type="text"
-                name="name"
-                placeholder="Name user..."
-              />
+              <input type="text" name="name" placeholder="Name user..." />
             </div>
             <div className="popup__field">
               <label>Email</label>
-              <input
-                ref={register({ required: true })}
-                type="email"
-                name="email"
-                placeholder="test@test.com"
-              />
+              <input type="email" name="email" placeholder="test@test.com" />
             </div>
             <div className="popup__field">
               <label>Phone</label>
@@ -81,17 +72,11 @@ export const AddClient = ({ trigger }) => {
             </div>
             <div className="popup__field">
               <label>Birthday</label>
-              <input
-                ref={register({ required: true })}
-                type="text"
-                name="birthday"
-                placeholder="12/31/1998"
-              />
+              <input type="text" name="birthday" placeholder="12/31/1998" />
             </div>
             <div className="popup__field">
               <label>Address</label>
               <input
-                ref={register({ required: true })}
                 type="text"
                 name="address"
                 placeholder="Atizapan de Zaragoza, Las penitas, Coral #7"
@@ -99,21 +84,11 @@ export const AddClient = ({ trigger }) => {
             </div>
             <div className="popup__field">
               <label>Company</label>
-              <input
-                ref={register({ required: true })}
-                type="text"
-                name="company"
-                placeholder="Microsoft"
-              />
+              <input type="text" name="company" placeholder="Microsoft" />
             </div>
             <div className="popup__field">
               <label>Website</label>
-              <input
-                ref={register({ required: true })}
-                type="text"
-                name="website"
-                placeholder="www.example.com"
-              />
+              <input type="text" name="website" placeholder="www.example.com" />
             </div>
 
             <div className="popup__actions">

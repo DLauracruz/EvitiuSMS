@@ -6,7 +6,6 @@ import { useToasts } from "react-toast-notifications";
 import { types } from "../../context/contactsTypes";
 import * as Gen from "generator-username";
 import { name } from "faker";
-import { AddTeamContact } from "./AddTeamContact";
 
 export const CreateTeam = ({ trigger }) => {
   const gerador = new Gen();
