@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import Popup from 'reactjs-popup';
 import { useToasts } from 'react-toast-notifications';
-import { postSMS } from '../../API/sms/SmsPost.api';
+import { EPSms } from '../../API/api';
 
 export const NumberMessage = ({ trigger }) => {
  const ref = useRef();
@@ -19,13 +19,22 @@ export const NumberMessage = ({ trigger }) => {
 
  const sendMessage = async () => {
   if (sms.length > 0 && number.length > 0) {
-   postSMS(sms, number);
+   EPSms.createSms(sms, number).then((data) => {
+    if (data) {
+     addToast(`Message '${sms}' sent successfully.`, {
+      appearance: 'info',
+     });
 
-   addToast(`Message '${sms}' was sent successfully.`, {
-    appearance: 'info',
+     closeTooltip();
+    } else {
+     addToast(
+      `Server error, make sure that you have connected to a network or WiFi`,
+      {
+       appearance: 'error',
+      }
+     );
+    }
    });
-
-   closeTooltip();
   } else {
    addToast(
     `You need to provide a number and a message with length more than 1.`,
@@ -61,10 +70,10 @@ export const NumberMessage = ({ trigger }) => {
         placeholder="Phone Number..."
        />
       </div>
-      <label class="toggler__label">
+      <label className="toggler__label">
        <input type="checkbox" hidden />
        <span>SMS</span>
-       <div class="toggler"></div>
+       <div className="toggler"></div>
        <span>MSS</span>
       </label>
       <div className="popup__field">

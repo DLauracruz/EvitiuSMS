@@ -1,100 +1,101 @@
 .messages__messages {
-  display: flex;
-  flex-direction: column;
-  margin: 1em 0;
-  padding: 1em 1em 0 1em;
-  background-color: $white;
+ display: flex;
+ flex-direction: column;
+ margin: 1em 0;
+ padding: 1em 1em 0 1em;
+ background-color: $white;
+ border-radius: 0.4em;
+ overflow-y: auto;
+ height: 80%;
+ outline: none;
+
+ & > div > img {
+  align-self: flex-end;
+  width: 70%;
+  border-radius: 0.6em;
+  margin-bottom: 0.5em;
+  cursor: pointer;
+ }
+
+ .__react_modal_image__modal_container {
+  position: fixed;
+  z-index: 10 !important;
+ }
+
+ @mixin message {
+  max-width: 70%;
   border-radius: 0.4em;
-  overflow-y: auto;
-  height: 80%;
-  outline: none;
+  margin-bottom: 0.5em;
+  padding: 1em;
+ }
 
-  & > div > img {
-    align-self: flex-end;
-    width: 70%;
-    border-radius: 0.6em;
-    margin-bottom: 0.5em;
-    cursor: pointer;
+ @mixin span {
+  display: inline-block;
+  width: auto;
+  margin-bottom: 0.5em;
+  font-size: 0.8rem;
+ }
+
+ .pending {
+  color: lighten($color: $red, $amount: 10) !important;
+  font-size: 0.9rem !important;
+
+  &:hover {
+   color: darken($color: $red, $amount: 5) !important;
+   transition-duration: 0.3s;
+   cursor: pointer;
+  }
+ }
+
+ .img {
+  &__from {
+   margin-left: auto;
   }
 
-  .__react_modal_image__modal_container {
-    position: fixed;
-    z-index: 10 !important;
+  &__to {
+   margin-right: auto;
   }
+ }
 
-  @mixin message {
-    max-width: 70%;
-    border-radius: 0.4em;
-    margin-bottom: 0.5em;
-    padding: 1em;
-  }
+ .message__to {
+  @include message;
+  background-color: $quinary;
+  color: $white;
+ }
 
-  @mixin span {
-    display: inline-block;
-    width: auto;
-    margin-bottom: 0.5em;
-    font-size: 0.8rem;
-  }
+ .message__from {
+  @include message;
+  margin-left: auto;
+  color: $white;
+  background-color: $secondary;
+ }
 
-  .pending {
-    color: lighten($color: $red, $amount: 10) !important;
-    font-size: 0.9rem !important;
+ .span__to {
+  @include span;
+  color: $font-color;
+ }
 
-    &:hover {
-      color: darken($color: $red, $amount: 5) !important;
-      transition-duration: 0.3s;
-      cursor: pointer;
-    }
-  }
+ .span__from {
+  @include span;
+  display: block;
+  margin-left: auto;
+  color: $font-color;
+  text-align: right;
+ }
 
-  .img {
-    &__from {
-      margin-left: auto;
-    }
-
-    &__to {
-      margin-right: auto;
-    }
-  }
-
-  .message__to {
-    @include message;
-    background-color: $quinary;
-    color: $white;
-  }
-
-  .message__from {
-    @include message;
-    align-self: flex-end;
-    color: $white;
-    background-color: $secondary;
-  }
-
-  .span__to {
-    @include span;
-    color: $font-color;
-  }
-
-  .span__from {
-    @include span;
-    align-self: flex-end;
-    color: $font-color;
-    text-align: right;
-  }
-
-  .messages__drop-zone > .drag {
-    padding: 5em 2em;
-    display: flex;
-    margin: 0 auto;
-    width: 80%;
-    border-radius: 1em 1em 0 0;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 1.2rem;
-    background-color: $quaternary;
-    color: white;
-    transition: height 0.3s ease-in;
-  }
+ .messages__drop-zone > .drag {
+  padding: 5em 2em;
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 1em 1em 0 0;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  background-color: $quaternary;
+  color: white;
+  transition: height 0.3s ease-in;
+ }
 }

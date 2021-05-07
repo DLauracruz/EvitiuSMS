@@ -3,20 +3,21 @@ import { useHistory } from 'react-router';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
-import { postMessages } from '../../API/sms/SmsPost.api';
-
 import { ContactsContext } from '../../context/ContactsContext';
 import { types } from '../../context/contactsTypes';
 
 import { scrollToBottomAnimated } from '../../helpers/scrollToBottom';
 import { Messages } from './Messages';
 import { format } from 'date-fns';
+import { EPCompanies, EPMessages } from '../../API/api';
+import { useToasts } from 'react-toast-notifications';
 
 export const Chat = () => {
  const [message, setMessage] = useState('');
  const { contactsState, dispatch } = useContext(ContactsContext);
  const { activeContact, activeTeam } = contactsState;
  const history = useHistory();
+ const { addToast } = useToasts();
 
  useEffect(() => {
   if (activeContact === null) {
@@ -65,13 +66,28 @@ export const Chat = () => {
  const sendMessage = async (event) => {
   if (event.key === 'Enter' && message.length > 0) {
    if (activeTeam.name === 'contacts') {
-    await dispatch({
-     type: types.addMessage,
-     payload: {
-      origin: 'from',
-      message: message,
-      date: new Date().toString(),
-     },
+    EPMessages.createMessage(message).then(async (data) => {
+     if (data) {
+      await dispatch({
+       type: types.addMessage,
+       payload: {
+        origin: 'from',
+        message: message,
+        date: new Date().toString(),
+       },
+      });
+
+      addToast('Message sent successfully', {
+       appearance: 'success',
+      });
+     } else {
+      addToast(
+       `Server error, make sure that you have connected to a network or WiFi`,
+       {
+        appearance: 'error',
+       }
+      );
+     }
     });
    } else {
     await dispatch({
@@ -86,8 +102,6 @@ export const Chat = () => {
      },
     });
    }
-
-   postMessages(message);
   }
  };
 
@@ -104,6 +118,32 @@ export const Chat = () => {
    pdf.save('download.pdf');
   });
  };
+
+ // TODO: Test endpoints
+ useEffect(() => {
+  EPCompanies.indexCompanies().then((data) => {
+   if (data) {
+    addToast('Get Companies works!', {
+     appearance: 'success',
+    });
+   } else {
+    addToast('Get Companies does not works!', {
+     appearance: 'error',
+    });
+   }
+  });
+  EPCompanies.singleCompany().then((data) => {
+   if (data) {
+    addToast('Get Company works!', {
+     appearance: 'success',
+    });
+   } else {
+    addToast('Get Company does not works!', {
+     appearance: 'error',
+    });
+   }
+  });
+ }, []);
 
  return (
   <div className="chat">
